@@ -33,7 +33,4 @@ services:
     #telling SightingScorer that we are passing it all the scoring factor classes in the Scoring folder
     App\Service\SightingScorer:
         arguments:
-            $scoringFactors:
-                - '@App\Scoring\TitleFactor'
-                - '@App\Scoring\DescriptionFactor'
-                - '@App\Scoring\CoordinatesFactor'
+            $scoringFactors: !tagged_iterator scoring.factor
