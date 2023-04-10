@@ -7,18 +7,18 @@ use App\Service\RegexSpamWordHelper;
 
 class CommentSpamManager
 {
-    private RegexSpamWordHelper $spamWordHelper;
+    private CommentSpamCounterInterface $spamWordCounter;
 
-    public function __construct(RegexSpamWordHelper $spamWordHelper){
+    public function __construct(CommentSpamCounterInterface $spamWordCounter){
 
-        $this->spamWordHelper = $spamWordHelper;
+        $this->spamWordHelper = $spamWordCounter;
     }
     public function validate(Comment $comment): void
     {
         $content = $comment->getContent();
-        $badWordsOnComment = $this->spamWordHelper->getMatchedSpamWords($content);
+        $badWordsCount = $this->spamWordHelper->countSpamWords($content);
 
-        if (count($badWordsOnComment) >= 2) {
+        if ($badWordsCount >= 2) {
             // We could throw a custom exception if needed
             throw new \RuntimeException('Message detected as spam');
         }
