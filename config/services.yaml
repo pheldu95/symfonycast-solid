@@ -30,6 +30,8 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    App\Service\DebuggableSightingScorer: '@App\Service\SightingScorer'
+
     #telling SightingScorer that we are passing it all the scoring factor classes in the Scoring folder
     App\Service\SightingScorer:
         #substituting debuggablesightingscorer for sightingscorer. so that we have debugging while we are developing
