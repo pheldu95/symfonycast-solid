@@ -32,5 +32,7 @@ services:
 
     #telling SightingScorer that we are passing it all the scoring factor classes in the Scoring folder
     App\Service\SightingScorer:
+        #substituting debuggablesightingscorer for sightingscorer. so that we have debugging while we are developing
+        class: App\Service\DebuggableSightingScorer
         arguments:
             $scoringFactors: !tagged_iterator scoring.factor
