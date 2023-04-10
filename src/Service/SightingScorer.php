@@ -21,6 +21,7 @@ class SightingScorer
         $score = 0;
 
         foreach($this->scoringFactors as $scoringFactor){
+
             $score+= $scoringFactor->score($sighting);
         }
 
